@@ -28,7 +28,7 @@ namespace financial_management.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
-                    Valye = table.Column<double>(nullable: false),
+                    Value = table.Column<double>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

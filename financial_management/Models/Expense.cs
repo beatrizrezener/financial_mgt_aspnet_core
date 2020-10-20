@@ -18,13 +18,13 @@ namespace financial_management.Models
         public DateTime Date { get; set; }
 
         [Required(ErrorMessage = "Required field")]
-        public double Valye { get; set; }
+        public double Value { get; set; }
 
         [Display(Name = "Category")]
         [Required(ErrorMessage = "Required field")]
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public Category category { get; set; }
+        public Category Category { get; set; }
     }
 }

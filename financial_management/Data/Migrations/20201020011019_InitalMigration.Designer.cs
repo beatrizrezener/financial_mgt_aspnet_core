@@ -9,7 +9,7 @@ using financial_management.Data;
 namespace financial_management.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201019005446_InitalMigration")]
+    [Migration("20201020011019_InitalMigration")]
     partial class InitalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -245,7 +245,7 @@ namespace financial_management.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Valye")
+                    b.Property<double>("Value")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
@@ -308,7 +308,7 @@ namespace financial_management.Data.Migrations
 
             modelBuilder.Entity("financial_management.Models.Expense", b =>
                 {
-                    b.HasOne("financial_management.Models.Category", "category")
+                    b.HasOne("financial_management.Models.Category", "Category")
                         .WithMany("Expenses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

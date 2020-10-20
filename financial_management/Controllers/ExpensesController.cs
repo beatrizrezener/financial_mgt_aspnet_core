@@ -24,7 +24,27 @@ namespace financial_management.Controllers
         // GET: Expenses
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Expense.Include(e => e.category);
+            var applicationDbContext = _context.Expense.Include(e => e.Category);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: Expenses by category
+        public async Task<IActionResult> ByCategory(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var applicationDbContext = _context.Expense
+                .Include(e => e.Category)
+                .Where(c => c.CategoryId == id);
+
+            if (applicationDbContext == null)
+            {
+                return NotFound();
+            }
+
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,7 +57,7 @@ namespace financial_management.Controllers
             }
 
             var expense = await _context.Expense
-                .Include(e => e.category)
+                .Include(e => e.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (expense == null)
             {
@@ -93,7 +113,7 @@ namespace financial_management.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Date,Valye,CategoryId")] Expense expense)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Date,Value,CategoryId")] Expense expense)
         {
             if (id != expense.Id)
             {
@@ -133,7 +153,7 @@ namespace financial_management.Controllers
             }
 
             var expense = await _context.Expense
-                .Include(e => e.category)
+                .Include(e => e.Category)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (expense == null)
             {

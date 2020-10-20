@@ -243,7 +243,7 @@ namespace financial_management.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Valye")
+                    b.Property<double>("Value")
                         .HasColumnType("REAL");
 
                     b.HasKey("Id");
@@ -306,7 +306,7 @@ namespace financial_management.Data.Migrations
 
             modelBuilder.Entity("financial_management.Models.Expense", b =>
                 {
-                    b.HasOne("financial_management.Models.Category", "category")
+                    b.HasOne("financial_management.Models.Category", "Category")
                         .WithMany("Expenses")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
